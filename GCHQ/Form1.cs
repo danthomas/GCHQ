@@ -13,6 +13,7 @@ namespace GCHQ
     public partial class Form1 : Form
     {
         private List<Piece> _pieces;
+        private Piece _piece;
 
         public Form1()
         {
@@ -50,7 +51,7 @@ namespace GCHQ
                 .Select((xs, y) => new Temp { y = y, xs = xs })
                 .SelectMany(x => x.xs, (temp, length) => new Piece(Orientation.Horizontal, 0, temp.y, length))
                 .ToList();
-            
+
             for (int y = 0; y < 25; ++y)
             {
                 int x = 0;
@@ -70,16 +71,30 @@ namespace GCHQ
 
         protected override void OnPaint(PaintEventArgs e)
         {
-            Pen black = new Pen(Color.Black, 2);
-            Pen white = new Pen(Color.White, 2);
-            
-            //e.Graphics.DrawRectangle(white, 0, 0, 5 * 25, 5 * 25);
-            e.Graphics.DrawRectangle(white, 0, 0, 5 * 25, 5 * 25);
+            Brush black = new SolidBrush(Color.Black);
+            Brush red = new SolidBrush(Color.Red);
 
-            //foreach (var piece in _pieces)
-            //{
-            //    e.Graphics.DrawRectangle(black, piece.X * 5, piece.Y * 5, 5, 5);
-            //}
+            foreach (var piece in _pieces)
+            {
+                e.Graphics.FillRectangle(_piece == piece ? red : black, new Rectangle(piece.X * 10, piece.Y * 10, 10 * piece.Length, 10));
+            }
+        }
+
+        private void Form1_MouseDown(object sender, MouseEventArgs e)
+        {
+            _piece = _pieces.SingleOrDefault(x =>
+            e.X >= x.X * 10
+            && e.X < (x.X + x.Length) * 10
+            && e.Y >= x.Y * 10
+            && e.Y < (x.Y + 1) * 10);
+
+            Invalidate();
+        }
+
+        private void Form1_MouseUp(object sender, MouseEventArgs e)
+        {
+            _piece = null;
+            Invalidate();
         }
     }
 
