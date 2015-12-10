@@ -14,9 +14,15 @@ namespace GCHQ
     {
         private List<Piece> _pieces;
         private Piece _piece;
+        private int _size;
+        private int _mouseDownX;
+        private int _initialPieceX;
+        private int _diffX;
 
         public Form1()
         {
+            _size = 25;
+
             InitializeComponent();
 
             int[][] pieces = {
@@ -76,41 +82,43 @@ namespace GCHQ
 
             foreach (var piece in _pieces)
             {
-                e.Graphics.FillRectangle(_piece == piece ? red : black, new Rectangle(piece.X * 10, piece.Y * 10, 10 * piece.Length, 10));
+                e.Graphics.FillRectangle(_piece == piece ? red : black, new Rectangle((piece.X * _size) + (_piece == piece ? _diffX : 0), piece.Y * _size, _size * piece.Length, _size));
             }
         }
 
         private void Form1_MouseDown(object sender, MouseEventArgs e)
         {
             _piece = _pieces.SingleOrDefault(x =>
-            e.X >= x.X * 10
-            && e.X < (x.X + x.Length) * 10
-            && e.Y >= x.Y * 10
-            && e.Y < (x.Y + 1) * 10);
+            e.X >= x.X * _size
+            && e.X < (x.X + x.Length) * _size
+            && e.Y >= x.Y * _size
+            && e.Y < (x.Y + 1) * _size);
 
-            Invalidate();
+            if (_piece != null)
+            {
+                _initialPieceX = _mouseDownX = e.Location.X;
+                Invalidate();
+            }
         }
 
         private void Form1_MouseUp(object sender, MouseEventArgs e)
         {
-            _piece = null;
-            Invalidate();
+            if (_piece != null)
+            {
+                _piece.X = (int) (_piece.X + (_diffX  / _size * 1.5));
+                _diffX = 0;
+                _piece = null;
+                Invalidate();
+            }
         }
-    }
 
-    public class Piece
-    {
-        public Orientation Orientation { get; set; }
-        public int X { get; set; }
-        public int Y { get; set; }
-        public int Length { get; set; }
-
-        public Piece(Orientation orientation, int x, int y, int length)
+        private void Form1_MouseMove(object sender, MouseEventArgs e)
         {
-            Orientation = orientation;
-            X = x;
-            Y = y;
-            Length = length;
+            if (_piece != null)
+            {
+                _diffX = e.X - _mouseDownX;
+                Invalidate();
+            }
         }
     }
 }
