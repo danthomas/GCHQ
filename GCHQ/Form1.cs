@@ -249,6 +249,9 @@ namespace GCHQ
                 if (_piece != null)
                 {
                     _initialPieceX = _mouseDownX = e.Location.X;
+
+                     _pieces.Where(x => x.Y == _piece.Y && x.X > _piece.X).Min(x => x.X);
+
                     Invalidate();
                 }
             }
@@ -354,13 +357,14 @@ namespace GCHQ
         {
             if (_piece != null)
             {
-                var x = _piece.X + _diffX;
-
-                double zzz = Math.Round(1.0 * x / _size, 0) * _size;
-
-                Text = x.ToString();
-                Text += " - " + zzz.ToString();
                 _diffX = e.X - _mouseDownX;
+
+
+                if (_piece.X + _piece.Length + _diffX > (25 * 25))
+                {
+                    _diffX = (25*25) - _piece.X - _piece.Length;
+                }
+
                 Invalidate();
             }
         }
