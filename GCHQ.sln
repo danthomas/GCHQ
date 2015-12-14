@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GCHQ", "GCHQ\GCHQ.csproj", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Testing", "Testing\Testing.csproj", "{C5C0658B-FF73-4A17-8959-DC33F40AAE6F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GCHQ.Core", "GCHQ.Core\GCHQ.Core.csproj", "{00CCBD50-4909-4ADF-9C6F-D4E7C269D42B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{C5C0658B-FF73-4A17-8959-DC33F40AAE6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C5C0658B-FF73-4A17-8959-DC33F40AAE6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C5C0658B-FF73-4A17-8959-DC33F40AAE6F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00CCBD50-4909-4ADF-9C6F-D4E7C269D42B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00CCBD50-4909-4ADF-9C6F-D4E7C269D42B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00CCBD50-4909-4ADF-9C6F-D4E7C269D42B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00CCBD50-4909-4ADF-9C6F-D4E7C269D42B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

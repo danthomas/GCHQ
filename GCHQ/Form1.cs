@@ -20,6 +20,7 @@ namespace GCHQ
         private int _diffX;
         private bool[,] _fixed;
         private int[][] _vertical;
+        private int[][] _horizontal;
         private bool[] _highlight;
 
         public Form1()
@@ -36,7 +37,8 @@ namespace GCHQ
                ControlStyles.OptimizedDoubleBuffer,
                true);
 
-            int[][] horizontal = {
+            _horizontal = new[]
+            {
                 new[] {7, 3, 1, 1, 7},
                 new[] {1, 1, 2, 2, 1, 1},
                 new[] {1, 3, 1, 3, 1, 1, 3, 1},
@@ -102,7 +104,7 @@ namespace GCHQ
 
             label2.Text = result;
 
-            _pieces = horizontal
+            _pieces = _horizontal
                 .Select((xs, y) => new Temp { y = y, xs = xs })
                 .SelectMany(x => x.xs, (temp, length) => new Piece(Orientation.Horizontal, 0, temp.y * _size, length * _size))
                 .ToList();

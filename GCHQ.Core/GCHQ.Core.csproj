@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C5C0658B-FF73-4A17-8959-DC33F40AAE6F}</ProjectGuid>
+    <ProjectGuid>{00CCBD50-4909-4ADF-9C6F-D4E7C269D42B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Testing</RootNamespace>
-    <AssemblyName>Testing</AssemblyName>
+    <RootNamespace>GCHQ.Core</RootNamespace>
+    <AssemblyName>GCHQ.Core</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,10 +30,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="nunit.framework, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
-      <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -44,22 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BoardTests.cs" />
-    <Compile Include="Class1.cs" />
+    <Compile Include="Board.cs" />
+    <Compile Include="Piece.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\GCHQ.Core\GCHQ.Core.csproj">
-      <Project>{00CCBD50-4909-4ADF-9C6F-D4E7C269D42B}</Project>
-      <Name>GCHQ.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\GCHQ\GCHQ.csproj">
-      <Project>{118C3152-2209-495E-BF95-D5C50D4C0CFD}</Project>
-      <Name>GCHQ</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
