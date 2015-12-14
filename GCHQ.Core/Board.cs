@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace GCHQ.Core
@@ -8,6 +9,7 @@ namespace GCHQ.Core
         private readonly int _cellSize;
         private readonly int[][] _horizontal;
         private readonly int[][] _vertical;
+        private int _downX;
 
         public Board(int cellSize, int[][] horizontal, int[][] vertical)
         {
@@ -59,13 +61,17 @@ namespace GCHQ.Core
         public void MouseDown(int x, int y)
         {
             CurrentPiece = Pieces.SingleOrDefault(p => CellHitTest(x, y, p));
+
+            if ()
+            _downPieceX = CurrentPiece.X
+            _downX = x;
         }
 
         private bool CellHitTest(int x, int y, Piece p)
         {
-            var ret = x >= p.X * _cellSize 
+            var ret = x >= p.X * _cellSize
                    && x < (p.X + p.Length) * _cellSize
-                   && y >= p.Y * _cellSize 
+                   && y >= p.Y * _cellSize
                    && y < (p.Y + 1) * _cellSize;
 
             return ret;
@@ -73,5 +79,11 @@ namespace GCHQ.Core
 
         public Piece CurrentPiece { get; set; }
 
+        public void MouseMove(int x, int y)
+        {
+            int xDiff = x - _downX;
+
+            int diff = (int)Math.Floor(xDiff / 1.0 / _cellSize);
+        }
     }
 }
